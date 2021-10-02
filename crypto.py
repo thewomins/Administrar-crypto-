@@ -21,18 +21,36 @@ class Crypto:
         usd = cantidad_comprada*precio
         return usd
 
+    def calculo_compra(self):
+        cantidad=0
+        if self.acronimo == 'USD':
+            for key in self.lista_transacciones['compras']:
+                cantidad= cantidad+key['cantidad comprada']
+        else:
+            for key in self.lista_transacciones['compras']:
+                cantidad= cantidad+self.calcula_precio(key['cantidad comprada'], key['precio crypto'])
+                self.cantidad=self.cantidad+key['cantidad comprada']
+        return cantidad
+
+    def calculo_ventas(self):
+        cantidad=0
+        if self.acronimo == 'USD':
+            for key in self.lista_transacciones['ventas']:
+                cantidad= cantidad+key['cantidad vendida']
+        else:
+            for key in self.lista_transacciones['ventas']:
+                cantidad= cantidad+self.calcula_precio(key['cantidad vendida'], key['precio crypto'])
+                self.cantidad=self.cantidad-key['cantidad vendida']
+        return cantidad
+
     def calculo_depositado(self):
-        for key in self.lista_transacciones:
-            valor = self.calcula_precio(key['cantidad comprada'],key['precio crypto'])
-            if key["estado"]==1:
-                self.cantidad = self.cantidad + key["cantidad comprada"]
-                self.depositado = self.depositado + valor
-            else:
-                self.cantidad = self.cantidad - key["cantidad comprada"]
+        self.depositado= self.calculo_compra()-self.calculo_ventas()
         self.depositado = round(self.depositado, 2)
         return self.depositado 
 
     def calculo_total(self):      
-        self.total = round(self.calcula_precio(self.cantidad, self.precio_actual()),2)
-        #print("b "+str(self.depositado)+" "+str(self.precio_actual())+" "+str(self.total))  
+        if self.acronimo == 'USD':
+            self.total=self.depositado
+        else:
+            self.total = round(self.calcula_precio(self.cantidad, self.precio_actual()),2) 
         return self.total
