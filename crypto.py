@@ -46,6 +46,8 @@ class Crypto:
     def calculo_depositado(self):
         self.depositado= self.calculo_compra()-self.calculo_ventas()
         self.depositado = round(self.depositado, 2)
+        if(self.depositado<=0):
+            self.depositado=0
         return self.depositado 
 
     def calculo_total(self):      
