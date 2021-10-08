@@ -1,22 +1,17 @@
-from gui.menu_lateral import Menu_lateral
-from gui.menu_principal import Menu_principal
+
 
 class Controller:
-    def __init__(self, vista, Wallet):
-        self.wallet = Wallet
-        self.vista = vista
+    def __init__(self, wallet):
+        self.wallet= wallet
+    
+    def view_balance(self):
+        return self.wallet.balance
+    
+    def view_ganado(self):
+        return self.wallet.ganado
 
-    def home_view(self):
-        self.mostrar_menu_lateral()
-        self.mostrar_menu_balances()
+    def view_depositado(self):
+        return self.wallet.depositado
 
-    def mostrar_menu_lateral(self):
-        a = Menu_lateral(self.vista)
-        a.frame_menu_lateral().place(relheight=1, relwidth=0.32)
-
-    def mostrar_menu_balances(self):
-        a = Menu_principal(self.vista)
-        a.menu(self.wallet.balance,
-                self.wallet.ganado,
-                self.wallet.depositado,
-                self.wallet.list_monedas).place(relx=0.32, relheight=1, relwidth=0.68)
+    def view_monedas(self):
+        return self.wallet.list_monedas
