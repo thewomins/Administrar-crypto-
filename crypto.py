@@ -56,3 +56,8 @@ class Crypto:
         else:
             self.total = round(self.calcula_precio(self.cantidad, self.precio_actual()),2) 
         return self.total
+
+    def actualizar_crypto(self):
+        self.depositado = 0
+        self.total = 0 
+        self.cantidad = 0

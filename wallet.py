@@ -74,3 +74,17 @@ class Wallet:
         self.balance = round(self.balance, 2)
         self.depositado = round(self.depositado, 2)
         self.ganado = round(self.balance-self.depositado,2)
+
+    def actualizar_datos(self):
+        self.depositado = 0
+        self.balance = 0
+        self.ganado = 0
+        for i in self.list_monedas:
+            i.actualizar_crypto()
+            i.calculo_depositado()
+            i.calculo_total()
+            self.depositado= self.depositado+i.depositado
+            self.balance = self.balance+i.total
+        self.balance = round(self.balance, 2)
+        self.depositado = round(self.depositado, 2)
+        self.ganado = round(self.balance-self.depositado,2)
