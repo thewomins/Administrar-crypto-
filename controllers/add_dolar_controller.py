@@ -13,7 +13,7 @@ class New_dolar:
                 print("Faltan datos")
                 return
         try:
-            b=datos[0].get().upper(), 'USD', (int)(datos[1].get()), (int)(datos[2].get())
+            b=datos[0].get().upper(), 'USD', float(datos[1].get()), float(datos[2].get())
         except:
             print("Datos incorrectos ingrese nuevamente")
             return
