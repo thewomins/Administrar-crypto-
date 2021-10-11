@@ -16,7 +16,7 @@ class Menu_lateral:
         frame_interior = self.components.menu_frames(padre,'blue')
         a=self.boton_lateral(frame_interior, 'red', 'Agregar compra dolares', 12)
         a.place(relwidth=1, relheight=0.1)
-        b=self.boton_lateral(frame_interior, 'green', 'Agregar compra crypto', 12)
+        b=self.boton_lateral(frame_interior, 'green', 'Agregar transaccion crypto', 12)
         b.place(rely=0.11, relwidth=1, relheight=0.1)
         c=self.boton_lateral(frame_interior, 'yellow', 'c', 18)
         c.place(rely=0.22, relwidth=1, relheight=0.1)
