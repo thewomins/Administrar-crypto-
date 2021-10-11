@@ -60,3 +60,11 @@ class Components:
 
     def a(self):
         print('s')
+
+    def entry_txt(self, padre):
+        entry = tk.Entry(padre)
+        return entry
+
+    def text(self, padre, texto2, color, tamano):
+        textol = tk.Label(padre, text= texto2, bg=color, fg='white', font=("google sans medium", tamano))    
+        return textol
