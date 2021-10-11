@@ -37,8 +37,7 @@ class Wallet:
             'cuenta origen' : dato[0].upper(),
             'cuenta destino' : dato[1].upper(),
             'cantidad comprada' : dato[2],
-            'precio crypto' :  dato[3],
-            'cantidad gastada clp' : dato[4],
+            'precio crypto' :  dato[3]
             }) 
         else:
             self.transacciones[dato[1]]={}
