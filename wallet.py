@@ -24,7 +24,7 @@ class Wallet:
             self.add_compra_usd(dato)
 
     def add_venta_usd(self, dato):
-        self.transacciones[dato[1]]['ventas'].append({
+        self.transacciones[dato[0]]['ventas'].append({
             'cuenta origen' : dato[0].upper(),
             'cuenta destino': dato[1].upper(),
             'cantidad vendida' : dato[2],
@@ -32,7 +32,7 @@ class Wallet:
 
     def add_compra(self, dato):
         if dato[1] in self.transacciones:
-            self.add_venta_usd([dato[1],dato[0],dato[2]*dato[3],0])
+            self.add_venta_usd([dato[0],dato[1],dato[2]*dato[3],0])
             self.transacciones[dato[1]]['compras'].append({
             'cuenta origen' : dato[0].upper(),
             'cuenta destino' : dato[1].upper(),
@@ -65,11 +65,22 @@ class Wallet:
         return self.list_monedas
         
     def calculo_depositado(self):# 
+
+        #hacer que cuentas en usd al hacer traspaso de una cryto no lo tome como depositado
+        #o diferenciar depositado con invertido
+
         for i in self.list_monedas:
             i.calculo_depositado()
             i.calculo_total()
             self.depositado= self.depositado+i.depositado
             self.balance = self.balance+i.total
+            if i.acronimo=="USD":
+                print(i.acronimo)
+                print(i.depositado)
+                print(i.cantidad)
+                print(i.invertido)
+                print(i.retirado)
+                print("-----------")
         self.balance = round(self.balance, 2)
         self.depositado = round(self.depositado, 2)
         self.ganado = round(self.balance-self.depositado,2)

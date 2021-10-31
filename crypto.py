@@ -4,10 +4,16 @@ class Crypto:
     def __init__(self, nombre, acronimo, transacciones):
         self.nombre = nombre
         self.acronimo = acronimo
+        self.if_dolar()
         self.cantidad = 0
         self.depositado = 0
         self.total = 0
-        self.lista_transacciones = transacciones      
+        self.lista_transacciones = transacciones   
+
+    def if_dolar(self):
+        if self.acronimo=="USD":
+            self.invertido=0
+            self.retirado=0   
 
     def precio_actual(self):
         url = 'https://min-api.cryptocompare.com/data/price?fsym={}&tsyms={}'\
@@ -23,9 +29,15 @@ class Crypto:
 
     def calculo_compra(self):
         cantidad=0
-        if self.acronimo == 'USD':
+        invertido=0
+        if self.acronimo == 'USD':    
             for key in self.lista_transacciones['compras']:
-                cantidad= cantidad+key['cantidad comprada']
+                if key["cuenta origen"] == "CLP":
+                    invertido=invertido+key['cantidad comprada']
+                else:
+                    cantidad= cantidad+key['cantidad comprada']
+            cantidad=cantidad+invertido
+            self.invertido=invertido
         else:
             for key in self.lista_transacciones['compras']:
                 cantidad= cantidad+self.calcula_precio(key['cantidad comprada'], key['precio crypto'])
@@ -34,9 +46,15 @@ class Crypto:
 
     def calculo_ventas(self):
         cantidad=0
+        retirado=0
         if self.acronimo == 'USD':
             for key in self.lista_transacciones['ventas']:
-                cantidad= cantidad+key['cantidad vendida']
+                if key["cuenta destino"] == "CLP":
+                    retirado=retirado+key['cantidad vendida']
+                else:
+                    cantidad= cantidad+key['cantidad vendida']
+            cantidad=cantidad+retirado
+            self.retirado=retirado
         else:
             for key in self.lista_transacciones['ventas']:
                 cantidad= cantidad+self.calcula_precio(key['cantidad vendida'], key['precio crypto'])
