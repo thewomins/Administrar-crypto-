@@ -28,12 +28,14 @@ class Menu_principal:
         if len( self.controller.view_monedas())>3:
             print("monedas > 3 editar esto!!!")
         #editar
-        x,y=0,0
-        for i in range(3):
-            a=self.menu_abajo_interior(frame_secundario,  self.controller.view_monedas()[i])
+        a=self.dolar_carta(frame_secundario,  self.controller.view_monedas()[0])
+        a.grid(row=0, column=0, padx=5, pady=5, sticky=("N", "S", "E", "W"))
+        x,y=0,1
+        for i in range(2):
+            a=self.crypto_frame(frame_secundario,  self.controller.view_monedas()[i+1])
             a.grid(row=x, column=y, padx=5, pady=5, sticky=("N", "S", "E", "W"))
             y=y+1
-            if i == 1:
+            if i == 0:
                 y=0
                 x=1
         b=self.components.tarjeta_vermas(frame_secundario, self.color_tarjetas)
@@ -48,7 +50,12 @@ class Menu_principal:
         #b.grid(row=0, column=1, padx=10, pady=10,sticky=("N", "S", "E", "W"))
         #c.grid(row=1, column=0, padx=10, pady=10,sticky=("N", "S", "E", "W"))
 
-    def menu_abajo_interior(self, padre, monedas):
+    def crypto_frame(self, padre, monedas):
         components_secundario =  Components(padre)
         a=components_secundario.tarjeta_cryptos(self.color_tarjetas,monedas.nombre,monedas.total,round(monedas.total-monedas.depositado,2),monedas.depositado)
+        return a
+
+    def dolar_carta(self, padre, monedas):
+        components_secundario =  Components(padre)
+        a=components_secundario.tarjeta_dolar(self.color_tarjetas,monedas.nombre,monedas.total,round(monedas.retirado-monedas.invertido,2),monedas.invertido)
         return a

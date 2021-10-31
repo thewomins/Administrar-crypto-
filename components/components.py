@@ -68,3 +68,14 @@ class Components:
     def text(self, padre, texto2, color, tamano):
         textol = tk.Label(padre, text= texto2, bg=color, fg='white', font=("google sans medium", tamano))    
         return textol
+
+    def tarjeta_dolar(self, color, nombre, cantidad, ganado, invertido):
+        frame_izquierda = tk.Frame(self.padre, bg= color, pady=5)
+        frame_izquierda.columnconfigure((0,1), weight=1)
+        self.text_titulos_padre(frame_izquierda, nombre, color).grid(row=0, columnspan=2)
+        self.text_titulos_padre(frame_izquierda, cantidad, color).grid(row=1, columnspan=2)
+        self.text_secundario_padre(frame_izquierda, "Ganado", color).grid(ipadx = 10,row=2,sticky='w')
+        self.text_secundario_padre(frame_izquierda, ganado, color).grid(row=2, column=1, sticky='w')
+        self.text_secundario_padre(frame_izquierda, "Invertido", color).grid(ipadx = 10, row=3, sticky='w')
+        self.text_secundario_padre(frame_izquierda, invertido, color).grid(row=3, column=1, sticky='w')
+        return frame_izquierda
