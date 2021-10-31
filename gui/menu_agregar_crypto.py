@@ -21,12 +21,8 @@ class Menu_agregar_crypto:
         frame_boton=tk.Frame(frame_interior,bg='#37474f')
         frame_boton.place(relheight=0.1, rely=0.37, relwidth=1)
 
-        var1=tk.IntVar()
-        check=tk.Checkbutton(frame_boton, text="Venta", variable=var1, bg="#37474f", activebackground="#37474f", foreground="#fff",selectcolor="#37474f")
-        check.place(relx=0.1,relheight=1,relwidth=0.2)
-
         e=self.boton_lateral(frame_boton,"#263238","Agregar")
-        e.bind("<Button-1>",lambda _: self.controller.boton_press(b,var1))
+        e.bind("<Button-1>",lambda _: self.controller.boton_press(b))
         e.place(relx=0.6, relheight=1,relwidth=0.4) 
 
         return menu

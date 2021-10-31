@@ -4,9 +4,9 @@ class New_crypto:
     def __init__(self, Wallet):
         self.wallet = Wallet
 
-    def boton_press(self, datos, check):
+    def boton_press(self, datos):
         #datos= cuenta origen, cuenta destino, cantidad comprada, precio crypto
-        print(datos[0].get(), datos[1].get(), datos[2].get(), datos[3].get(), check.get())
+        print(datos[0].get(), datos[1].get(), datos[2].get(), datos[3].get())
         for a in datos:
             if not a.get():
                 print("Faltan datos")
@@ -17,10 +17,7 @@ class New_crypto:
             print("Datos incorrectos ingrese nuevamente")
             return
         print(b)
-        if(check.get()==0):
-            self.wallet.add_compra(b)
-        else:
-            self.wallet.add_venta(b)
+        self.wallet.add_compra(b)
         self.wallet.crea_crypto()
         self.wallet.calculo_depositado()
         archivo.guardar_json(self.wallet.transacciones, 'data.json')
