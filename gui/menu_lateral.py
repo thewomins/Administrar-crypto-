@@ -14,12 +14,14 @@ class Menu_lateral:
 
     def menu_interior(self, padre):
         frame_interior = self.components.menu_frames(padre,'blue')
-        a=self.boton_lateral(frame_interior, 'red', 'Agregar compra dolares', 12)
+        a=self.boton_lateral(frame_interior, 'red', 'Comprar dolares', 16)
         a.place(relwidth=1, relheight=0.1)
-        b=self.boton_lateral(frame_interior, 'green', 'Agregar transaccion crypto', 12)
+        b=self.boton_lateral(frame_interior, 'yellow', 'Retirar dolares', 16)
         b.place(rely=0.11, relwidth=1, relheight=0.1)
-        c=self.boton_lateral(frame_interior, 'yellow', 'c', 18)
+        c=self.boton_lateral(frame_interior, 'green', 'Comprar crypto', 16)
         c.place(rely=0.22, relwidth=1, relheight=0.1)
+        d=self.boton_lateral(frame_interior, 'green', 'Venta crypto', 16)
+        d.place(rely=0.33, relwidth=1, relheight=0.1)
 
         h=self.boton_lateral(frame_interior, 'yellow', 'Volver', 18)
         h.place(rely=0.88, relwidth=1, relheight=0.1)

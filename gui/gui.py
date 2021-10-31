@@ -8,10 +8,14 @@ from gui.menu_agregar_dolar import Menu_agregar_dolar
 from gui.menu_lateral import Menu_lateral
 from gui.menu_principal import Menu_principal
 from gui.menu_agregar_crypto import Menu_agregar_crypto
+from gui.menu_retirar_dolar import Menu_retirar_dolar
+from gui.menu_vender_crypto import Menu_vender_crypto
 from controllers.main_view_controller import Controller
 from controllers.add_dolar_controller import New_dolar
 from controllers.menu_lat_controller import Lat_controller
 from controllers.add_crypto_controller import New_crypto
+from controllers.sell_dolar_controller import Sell_dolar
+from controllers.sell_crypto_controller import Sell_crypto
 
 class Gui:
     def __init__(self, wallet):
@@ -46,8 +50,20 @@ class Gui:
         self.mostrar_menu_lat()
         menu.interior().place(relx=0.32, relheight=1, relwidth=0.68)
 
+    def menu_venta_dolar(self):
+        control_menu=Sell_dolar(self.wallet)
+        menu=Menu_retirar_dolar(self.vent, control_menu)
+        self.mostrar_menu_lat()
+        menu.interior().place(relx=0.32, relheight=1, relwidth=0.68)
+
     def menu_compra_crypto(self):
         control_menu=New_crypto(self.wallet)
         menu = Menu_agregar_crypto(self.vent, control_menu)
+        self.mostrar_menu_lat()
+        menu.interior().place(relx=0.32, relheight=1, relwidth=0.68)
+
+    def menu_venta_crypto(self):
+        control_menu=Sell_crypto(self.wallet)
+        menu = Menu_vender_crypto(self.vent, control_menu)
         self.mostrar_menu_lat()
         menu.interior().place(relx=0.32, relheight=1, relwidth=0.68)
