@@ -22,9 +22,12 @@ class Menu_principal:
         components_balance.targeta_principal(self.color_tarjetas, self.controller.view_balance(), self.controller.view_ganado(), self.controller.view_depositado())   
 
     def menu_abajo(self, padre):
+        #arreglar esta funcion para que solo lea las monedas disponibles
         frame_secundario = tk.Frame(padre, bg= '#37474f')
         frame_secundario.place(rely=0.32, relheight=0.7, relwidth=1)
         #editar
+        if len(self.controller.view_monedas())<3:
+            return
         if len( self.controller.view_monedas())>3:
             print("monedas > 3 editar esto!!!")
         #editar

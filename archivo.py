@@ -15,7 +15,14 @@ def leer_json(nombre_archivo):
         file = open_json(nombre_archivo)
         data = json.load(file)
     except:
-        data=""
+        data=formatea_file()
+    return data
+
+def formatea_file():
+    data={}
+    data["USD"]={}
+    data["USD"]['compras']=[]
+    data["USD"]['ventas']=[]
     return data
 
 def guardar_json(diccionario, nombre):
