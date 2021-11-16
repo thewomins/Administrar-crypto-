@@ -1,4 +1,4 @@
 # Administrar-crypto-
 
-requerimientos
-- Queri
+requirements
+- Request
