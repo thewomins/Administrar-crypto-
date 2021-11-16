@@ -33,7 +33,7 @@ if __name__ == "__main__":
     
     
     #archivo.guardar_json(wallet.transacciones, 'data.json')
-    data = archivo.leer_json('data.json')
+    data = archivo.leer_json('data')
     wallet.transacciones=data
     wallet.crea_crypto()
     dic_currency = wallet.transacciones
